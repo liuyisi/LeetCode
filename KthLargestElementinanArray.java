@@ -9,7 +9,7 @@ public class KthLargestElementinanArray {
     public int findKthLargest(int[] nums, int k) {
         if (nums == null || nums.length == 0) return 0;
         int left = 0, right = nums.length - 1;
-        while (1) {
+        while (true) {
             int pos = partition(nums, left, right);
             if (pos + 1 == k) {
                 return nums[pos];
@@ -19,6 +19,7 @@ public class KthLargestElementinanArray {
                 right = pos - 1;
             }
         }
+
     }
 
     private int partition (int[] nums, int left, int right) {
@@ -26,9 +27,9 @@ public class KthLargestElementinanArray {
         int i = left + 1;
         int j = right;
         while (i <= j) {
-            if (nums[i] < pivot) {
+            if (nums[i] >= pivot) {
                 i++;
-            }else if(nums[j] >= pivot) {
+            }else if(nums[j] < pivot) {
                 j--;
             }else {
                 swap(nums, i, j);
@@ -36,10 +37,11 @@ public class KthLargestElementinanArray {
                 j--;
             }
         }
-        return i;
+        swap(nums, left, j);
+        return j;
     }
 
-    private int swap (int[] nums, int i, int j) {
+    private void swap (int[] nums, int i, int j) {
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;
