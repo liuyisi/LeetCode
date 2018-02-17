@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.util.*;
 
-public class Solution {
+public class HappyNumber {
     Set<Integer> set = new HashSet<Integer>();
     public boolean isHappy(int n) {
         if(set.contains(n)) return false;
